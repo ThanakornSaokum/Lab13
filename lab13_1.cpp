@@ -17,3 +17,42 @@ int main(){
     cout << "\nMin = " << B[5];
     return 0;
 }
+
+void stat(const double A[], int N, double B[]) {
+    double sum = 0;
+    for (int i = 0; i < N; i++) {
+        sum += A[i];
+    }
+    B[0] = sum / N;
+    
+    double sd = 0;
+    for (int i = 0; i < N; i++) {
+        sd += pow(A[i] - B[0], 2);
+    }
+    B[1] = sqrt(sd / N);
+
+    double geometric = 1.0;
+    for (int i = 0; i < N; i++) {
+        geometric *= A[i];
+    }
+    B[2] = pow(geometric, 1.0 / N);
+
+    double harmonic = 0;
+    for (int i = 0; i < N; i++) {
+        harmonic += 1.0 / A[i];
+    }
+    B[3] = N / harmonic;
+
+    double max = A[0];
+    double min = A[0];
+    for (int i = 1; i < N; i++) {
+        if (A[i] > max) {
+            max = A[i];
+        }
+        if (A[i] < min) {
+            min = A[i];
+        }
+    }
+    B[4] = max;
+    B[5] = min;
+}
